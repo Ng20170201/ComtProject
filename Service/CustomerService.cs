@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Transactions;
-using Model;
 using RepositoriesInterfaces;
+using Service.Models;
 using ServiceReference1;
 using ServicesInterfaces;
 using Utils.ErrorModels;

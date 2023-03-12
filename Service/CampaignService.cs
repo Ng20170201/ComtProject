@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using RepositoriesInterfaces;
 using ServicesInterfaces;
 using Utils.Interfaces;

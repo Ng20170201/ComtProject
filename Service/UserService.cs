@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
 using RepositoriesInterfaces;
 using ServicesInterfaces;
 using Utils.ErrorModels;

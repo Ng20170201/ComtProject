@@ -5,7 +5,7 @@ namespace RepositoriesInterfaces
 {
     public interface ICustomerRepository
     {
-        public Task<bool> AddCustomerReward(RewardedUser rewardedUser);
+        public Task<bool> AddCustomerReward(IRewardedUser rewardedUser);
         public Task<List<IRewardedUser>> FindUsedReward(int id);
     }
 }
