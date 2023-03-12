@@ -13,9 +13,9 @@ namespace Repositories
             _context = context;
         }
 
-        public async Task<bool> AddCustomerReward(RewardedUser rewardedUser)
+        public async Task<bool> AddCustomerReward(IRewardedUser rewardedUser)
         {
-           await _context.RewardedUsers.AddAsync(rewardedUser);
+           await _context.RewardedUsers.AddAsync(new RewardedUser(rewardedUser));
             _context.SaveChanges();
 
             return true;

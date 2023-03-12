@@ -11,7 +11,7 @@ namespace ServicesInterfaces
     {
         public Task<List<ICampaign>> FindAllMonthCampaign();
         public Task<ICampaign> FindPurchasedRewards(int userID);
-        public Task<List<IRewardedUser>> GetPurchasedRewards();
+        public Task<List<ICsvModel>> GetPurchasedRewards();
         public Task<List<IRewardedUser>> GetPurchasedRewardsForUsers(int id);
     }
 }

@@ -23,5 +23,13 @@ namespace Model
             CostumerId = costumerId;
             DateRewarded = dateRewarded;
         }
+
+        public RewardedUser(IRewardedUser rewardedUser)
+        {
+            UserId = rewardedUser.UserId;
+            CostumerId = rewardedUser.CostumerId;
+            DateRewarded = rewardedUser.DateRewarded;
+            PurchasedReward = rewardedUser.PurchasedReward;
+        }
     }
 }

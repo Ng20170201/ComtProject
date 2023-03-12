@@ -11,6 +11,7 @@ using Utils.ErrorModels;
 using Utils.Handlers;
 using Utils.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Service.Models;
 
 namespace Service
 {

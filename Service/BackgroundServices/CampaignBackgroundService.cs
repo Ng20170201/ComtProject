@@ -40,7 +40,7 @@ namespace Service.BackgroundServices
 
 
 
-                    await Task.Delay(TimeSpan.FromSeconds(20), stoppingToken); 
+                    await Task.Delay(TimeSpan.FromHours(24), stoppingToken); 
                 }
             }
         }
