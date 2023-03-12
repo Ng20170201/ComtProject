@@ -10,7 +10,7 @@ namespace RepositoriesInterfaces
 {
     public interface ICampaignRepository
     {
-        public Task<bool> AddCampaign(Campaign campaign);
+        public Task<bool> AddCampaign(ICampaign campaign);
         Task<List<ICampaign>> FindAllMonthCampaign(DateTime now);
         public Task<ICampaign> FindMonthCampaign(DateTime now, int userID);
     }

@@ -20,9 +20,9 @@ namespace Repositories
             _context = context;
         }
 
-        public async Task<bool> AddCampaign(Campaign campaign)
+        public async Task<bool> AddCampaign(ICampaign campaign)
         {
-            await _context.Campaigns.AddAsync(campaign);
+            await _context.Campaigns.AddAsync(new Campaign(campaign));
 
 
             _context.SaveChanges();

@@ -31,16 +31,22 @@ namespace Service.BackgroundServices
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                using (var scope = _scopeFactory.CreateScope())
+                var now = DateTime.UtcNow;
+                var timeUntilMidnight = TimeSpan.FromDays(1) - (now - now.Date);
+                await Task.Delay(timeUntilMidnight, stoppingToken);
+                if (DateTime.Now.TimeOfDay == TimeSpan.Zero)
                 {
-                    var _campaignService = scope.ServiceProvider.GetRequiredService<ICampaignService>();
-                    var _emailServiceCsv = scope.ServiceProvider.GetRequiredService<IEmailServiceCSV>();
+                    using (var scope = _scopeFactory.CreateScope())
+                    {
+                        var _campaignService = scope.ServiceProvider.GetRequiredService<ICampaignService>();
+                        var _emailServiceCsv = scope.ServiceProvider.GetRequiredService<IEmailServiceCSV>();
+                        var _userService = scope.ServiceProvider.GetRequiredService<IUserService>();
 
-                    await SendEmailCSV(_campaignService,_emailServiceCsv);
+                        await _userService.ResetNumberOfRewardForLoggedUser();
 
 
-
-                    await Task.Delay(TimeSpan.FromSeconds(20), stoppingToken); 
+                        await SendEmailCSV(_campaignService, _emailServiceCsv);
+                    }
                 }
             }
         }

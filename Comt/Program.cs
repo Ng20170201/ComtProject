@@ -1,14 +1,12 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Model.DBCommunication;
-using Repositories;
-using RepositoriesInterfaces;
 using Service;
 using Service.BackgroundServices;
+using Service.DependencyInjections;
 using Service.EmailServices;
 using ServiceReference1;
 using ServicesInterfaces;
@@ -17,24 +15,8 @@ using Utils.Handlers;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EntityContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("ComtradeDb")));
 
+builder.Services.AddMyServices();
 
-builder.Services.AddScoped<ICustomerService, CustomerService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICampaignService, CampaignService>();
-
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ICampaignRepository,CampaignRepository>();
-
-builder.Services.AddScoped<SOAPDemoSoap, SOAPDemoSoapClient>();
-
-builder.Services.AddSingleton<BackgroundService, CampaignBackgroundService>();
-builder.Services.AddHostedService<CampaignBackgroundService>();
-
-builder.Services.AddScoped<IEmailServiceCSV, EmailServiceCSV>();
-
-builder.Services.AddSingleton<JWTGenerator>();
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddSwaggerGen(opt =>
 {

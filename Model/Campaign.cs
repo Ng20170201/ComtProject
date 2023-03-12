@@ -21,5 +21,11 @@ namespace Model
             DateCreated= dateCreated;
             UserId= userId;
         }
+        public Campaign(ICampaign campaign)
+        {
+            Id = campaign.Id;
+            DateCreated = campaign.DateCreated;
+            UserId = campaign.UserId;
+        }
     }
 }

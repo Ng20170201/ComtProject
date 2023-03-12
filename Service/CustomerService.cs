@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Transactions;
-using Model;
 using RepositoriesInterfaces;
+using Service.Models;
 using ServiceReference1;
 using ServicesInterfaces;
 using Utils.ErrorModels;
@@ -56,7 +56,7 @@ namespace Service
 
                     await AddReward(user,new RewardedUser(idUser, id, nowTime));
 
-                    User userChanged = new User(user.Id, user.Name, user.Username, user.Password, startedCampaign, user.DailyAddedReward + 1, user.Email);
+                    User userChanged = new User(user.Id, user.Name, user.Username, user.Password, true, user.DailyAddedReward + 1, user.Email);
                     await _userRepo.Update(userChanged);
 
                     scope.Complete();
@@ -64,6 +64,7 @@ namespace Service
 
                 catch (Exception ex)
                 {
+                    throw new BadRequestError("We cant added new reward");
                     scope.Dispose();
                 }
             }
