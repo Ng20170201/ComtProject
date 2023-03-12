@@ -37,5 +37,15 @@ namespace Service.Models
             StartedCampaign = startedCampaign;
             Email = email;
         }
+        public User(IUser user)
+        {
+            Id = user.Id;
+            Name = user.Name; 
+            Username = user.Username; 
+            Password = user.Password; 
+            DailyAddedReward = user.DailyAddedReward; 
+            StartedCampaign = user.StartedCampaign; 
+            Email = user.Email; 
+        }
     }
 }

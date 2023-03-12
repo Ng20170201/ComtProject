@@ -40,6 +40,10 @@ namespace Service.BackgroundServices
                     {
                         var _campaignService = scope.ServiceProvider.GetRequiredService<ICampaignService>();
                         var _emailServiceCsv = scope.ServiceProvider.GetRequiredService<IEmailServiceCSV>();
+                        var _userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+
+                        await _userService.ResetNumberOfRewardForLoggedUser();
+
 
                         await SendEmailCSV(_campaignService, _emailServiceCsv);
                     }

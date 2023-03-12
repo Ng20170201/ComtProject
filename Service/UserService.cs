@@ -12,6 +12,8 @@ using Utils.Handlers;
 using Utils.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Service.Models;
+using GSF.Net.Smtp;
+using System.Xml.Linq;
 
 namespace Service
 {
@@ -93,6 +95,16 @@ namespace Service
             {
                 throw new UnautorizedError("Cannot find user with this param");
             }
+        }
+
+        public async Task<bool> ResetNumberOfRewardForLoggedUser()
+        {
+            var user = await GetLoggedInUser();
+            User newUser = new User(user.Id, user.Name, user.Username, user.Password, user.StartedCampaign, 0, user.Email);
+
+            await _userRepo.Update(newUser);
+
+            return true;
         }
     }
 }
